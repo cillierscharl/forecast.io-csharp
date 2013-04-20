@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace ForecastIO
@@ -13,7 +14,7 @@ namespace ForecastIO
         [DataMember]
         public string timezone { get; set; }
         [DataMember]
-        public int offset { get; set; }
+        public Int64 offset { get; set; }
         [DataMember]
         public Currently currently { get; set; }
         [DataMember]
@@ -23,13 +24,15 @@ namespace ForecastIO
         [DataMember]
         public Daily daily { get; set; }
         [DataMember]
+        public Alerts alerts { get; set; }
+        [DataMember]
         public Flags flags { get; set; }
     }
     [DataContract]
     public class Currently
     {
         [DataMember]
-        public int time { get; set; }
+        public Int64 time { get; set; }
         [DataMember]
         public string summary { get; set; }
         [DataMember]
@@ -39,7 +42,7 @@ namespace ForecastIO
         [DataMember]
         public float temperature { get; set; }
         [DataMember]
-        public float dewPoint { get; set; }
+        public float dewPoInt64 { get; set; }
         [DataMember]
         public float windSpeed { get; set; }
         [DataMember]
@@ -59,7 +62,7 @@ namespace ForecastIO
     public class MinuteForecast
     {
         [DataMember]
-        public int time { get; set; }
+        public Int64 time { get; set; }
         [DataMember]
         public float precipIntensity { get; set; }
     }
@@ -77,7 +80,7 @@ namespace ForecastIO
     public class HourForecast
     {
         [DataMember]
-        public int time { get; set; }
+        public Int64 time { get; set; }
         [DataMember]
         public string summary { get; set; }
         [DataMember]
@@ -87,7 +90,7 @@ namespace ForecastIO
         [DataMember]
         public float temperature { get; set; }
         [DataMember]
-        public float dewPoint { get; set; }
+        public float dewPoInt64 { get; set; }
         [DataMember]
         public float windSpeed { get; set; }
         [DataMember]
@@ -117,15 +120,15 @@ namespace ForecastIO
     public class DailyForecast
     {
         [DataMember]
-        public int time { get; set; }
+        public Int64 time { get; set; }
         [DataMember]
         public string summary { get; set; }
         [DataMember]
         public string icon { get; set; }
         [DataMember]
-        public int sunriseTime { get; set; }
+        public Int64 sunriseTime { get; set; }
         [DataMember]
-        public int sunsetTime { get; set; }
+        public Int64 sunsetTime { get; set; }
         [DataMember]
         public float precipIntensity { get; set; }
         [DataMember]
@@ -133,13 +136,13 @@ namespace ForecastIO
         [DataMember]
         public float temperatureMin { get; set; }
         [DataMember]
-        public int temperatureMinTime { get; set; }
+        public Int64 temperatureMinTime { get; set; }
         [DataMember]
         public float temperatureMax { get; set; }
         [DataMember]
-        public int temperatureMaxTime { get; set; }
+        public Int64 temperatureMaxTime { get; set; }
         [DataMember]
-        public float dewPoint { get; set; }
+        public float dewPoInt64 { get; set; }
         [DataMember]
         public float windSpeed { get; set; }
         [DataMember]
@@ -165,6 +168,23 @@ namespace ForecastIO
         [DataMember]
         public List<DailyForecast> data { get; set; }
     }
+    [DataContract]
+    public class Alerts
+    {
+        [DataMember]
+        public List<Alert> data { get; set; }
+    }
+    [DataContract]
+    public class Alert
+    {
+        [DataMember]
+        public string title { get; set; }
+        [DataMember]
+        public Int64 expires { get; set; }
+        [DataMember]
+        public string uri { get; set; }
+    }
+
     [DataContract]
     public class Flags
     {

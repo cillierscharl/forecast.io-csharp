@@ -10,37 +10,24 @@ namespace ForecastIO
         private string apiKey;
         private string latitude;
         private string longitude;
-        private DateTime time;
+        private string unit;
+        private string exclude;
+        private string time;
 
-        private string currentForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2}";
-        private string periodForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2},{3}";
-
-        public ForecastIORequest(string _apiKey, float _lat, float _long)
-        {
-            apiKey = _apiKey;
-            latitude = _lat.ToString(CultureInfo.InvariantCulture);
-            longitude = _long.ToString(CultureInfo.InvariantCulture);
-        }
-
-        public ForecastIORequest(string _apiKey, float _lat, float _long, DateTime _time)
-        {
-            apiKey = _apiKey;
-            latitude = _lat.ToString(CultureInfo.InvariantCulture);
-            longitude = _long.ToString(CultureInfo.InvariantCulture);
-            time = _time;
-        }
+        private string currentForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2}?{3}&exclude={4}";
+        private string periodForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2},{3}?units={4}&exclude={5}";
 
         public ForecastIOReponse Get()
         {
             var client = new WebClient();
             var url = "";
-            if (time == DateTime.MinValue)
+            if (time == "")
             {
-                url = String.Format(currentForecastURL, apiKey, latitude, longitude);
+                url = String.Format(currentForecastURL, apiKey, latitude, longitude, unit, exclude);
             }
             else
             {
-                url = String.Format(periodForecastURL, apiKey, latitude, longitude, time);
+                url = String.Format(periodForecastURL, apiKey, latitude, longitude, time, unit, exclude);
             }
 
             var stringResult = FormatResponse(client.DownloadString(url));
@@ -58,6 +45,49 @@ namespace ForecastIO
             _input = _input.Replace("metar-stations", "metar_stations");
             _input = _input.Replace("darksky-stations", "darksky_stations");
             return _input;
+        }
+
+        public ForecastIORequest(string _apiKey, float _lat, float _long, string _unit, params string[] _exclude)
+        {
+            apiKey = _apiKey;
+            latitude = _lat.ToString(CultureInfo.InvariantCulture);
+            longitude = _long.ToString(CultureInfo.InvariantCulture);
+            unit = _unit;
+            if (_exclude.Length > 0)
+            {
+                foreach (string excludeBlock in _exclude)
+                {
+                    exclude += excludeBlock;
+                }
+                exclude = exclude.TrimEnd(',');
+            }
+            else
+            {
+                exclude = "";
+            }
+        }
+
+        public ForecastIORequest(string _apiKey, float _lat, float _long, DateTime _time, string _unit, params string[] _exclude)
+        {
+            apiKey = _apiKey;
+            latitude = _lat.ToString(CultureInfo.InvariantCulture);
+            longitude = _long.ToString(CultureInfo.InvariantCulture);
+            var milliseconds = _time.ToUniversalTime().Subtract(
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
+            time = Convert.ToInt64(milliseconds).ToString();
+            unit = _unit;
+            if (_exclude.Length > 0)
+            {
+                foreach (string excludeBlock in _exclude)
+                {
+                    exclude += excludeBlock + ",";
+                }
+                exclude = exclude.TrimEnd(',');
+            }
+            else
+            {
+                exclude = "";
+            }
         }
     }
 }
