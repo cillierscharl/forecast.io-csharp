@@ -5,6 +5,10 @@ C# Wrapper Library For [Forecast.io](http://forecast.io/)
 
 ------------------
 
+### Install ###
+
+    Install-Package Forecast.io
+
 ###Usage###
 
     using ForecastIO;
