@@ -14,14 +14,14 @@ namespace ForecastIO
         private string exclude;
         private string time;
 
-        private string currentForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2}?{3}&exclude={4}";
+        private string currentForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2}?units={3}&exclude={4}";
         private string periodForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2},{3}?units={4}&exclude={5}";
 
         public ForecastIOReponse Get()
         {
             var client = new WebClient();
             var url = "";
-            if (time == "")
+            if (time == null)
             {
                 url = String.Format(currentForecastURL, apiKey, latitude, longitude, unit, exclude);
             }
@@ -57,7 +57,7 @@ namespace ForecastIO
             {
                 foreach (string excludeBlock in _exclude)
                 {
-                    exclude += excludeBlock;
+                    exclude += excludeBlock + ",";
                 }
                 exclude = exclude.TrimEnd(',');
             }
