@@ -8,9 +8,15 @@ C# Wrapper Library For [Forecast.io](http://forecast.io/)
 ###Usage###
 
     using ForecastIO;
-    
+    // API Key, Lat, Long, Unit
     var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, Unit.si);
     var response = request.Get();
+    
+Returns the complete object : 
+
+<p align="center">
+  <img src="http://i.imgur.com/abK2kzi.png" alt=""></img>
+</p>
     
 ####Including the date####
     using ForecastIO;
@@ -30,10 +36,6 @@ C# Wrapper Library For [Forecast.io](http://forecast.io/)
     var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si, excludeBlocks);
     var response = request.Get();
 
-Returns the complete object : 
-<p align="center">
-  <img src="http://i.imgur.com/abK2kzi.png" alt=""></img>
-</p>
 
 Please note:
 
