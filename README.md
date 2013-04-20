@@ -13,6 +13,7 @@ C# Wrapper Library For [Forecast.io](http://forecast.io/)
 
     using ForecastIO;
     // API Key, Lat, Long, Unit
+    
     var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, Unit.si);
     var response = request.Get();
     
