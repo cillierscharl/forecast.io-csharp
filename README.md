@@ -9,7 +9,25 @@ C# Wrapper Library For [Forecast.io](http://forecast.io/)
 
     using ForecastIO;
     
-    var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f);
+    var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, Unit.si);
+    var response = request.Get();
+    
+####Including the date####
+    using ForecastIO;
+    
+    var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si);
+    var response = request.Get();
+    
+####Exclude certain objects (returned as null)####
+    using ForecastIO;
+    
+    var excludeBlocks = new string[] 
+    {
+        Exclude.alerts,
+        Exclude.currently
+    };
+
+    var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si, excludeBlocks);
     var response = request.Get();
 
 Returns the complete object : 
