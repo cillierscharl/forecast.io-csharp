@@ -3,9 +3,9 @@ using System.Globalization;
 using System.Net;
 using System.Web.Script.Serialization;
 
-namespace Forecastio
+namespace ForecastIO
 {
-    public class Forecastio
+    public class ForecastIORequest
     {
         private string apiKey;
         private string latitude;
@@ -15,14 +15,14 @@ namespace Forecastio
         private string currentForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2}";
         private string periodForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2},{3}";
 
-        public Forecastio(string _apiKey, float _lat, float _long)
+        public ForecastIORequest(string _apiKey, float _lat, float _long)
         {
             apiKey = _apiKey;
             latitude = _lat.ToString(CultureInfo.InvariantCulture);
             longitude = _long.ToString(CultureInfo.InvariantCulture);
         }
 
-        public Forecastio(string _apiKey, float _lat, float _long, DateTime _time)
+        public ForecastIORequest(string _apiKey, float _lat, float _long, DateTime _time)
         {
             apiKey = _apiKey;
             latitude = _lat.ToString(CultureInfo.InvariantCulture);
@@ -30,7 +30,7 @@ namespace Forecastio
             time = _time;
         }
 
-        public ForecastioReponse Get()
+        public ForecastIOReponse Get()
         {
             var client = new WebClient();
             var url = "";
@@ -45,7 +45,7 @@ namespace Forecastio
 
             var stringResult = FormatResponse(client.DownloadString(url));
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            ForecastioReponse dataObject = serializer.Deserialize<ForecastioReponse>(stringResult);
+            ForecastIOReponse dataObject = serializer.Deserialize<ForecastIOReponse>(stringResult);
 
             return dataObject;
             

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Forecastio
+namespace ForecastIO
 {
     [DataContract]
-    public class ForecastioReponse
+    public class ForecastIOReponse
     {
         [DataMember]
         public float latitude { get; set; }
