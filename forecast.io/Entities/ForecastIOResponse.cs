@@ -24,7 +24,7 @@ namespace ForecastIO
         [DataMember]
         public Daily daily { get; set; }
         [DataMember]
-        public Alerts alerts { get; set; }
+        public List<Alert> alerts { get; set; }
         [DataMember]
         public Flags flags { get; set; }
     }
@@ -172,12 +172,7 @@ namespace ForecastIO
         [DataMember]
         public List<DailyForecast> data { get; set; }
     }
-    [DataContract]
-    public class Alerts
-    {
-        [DataMember]
-        public List<Alert> data { get; set; }
-    }
+
     [DataContract]
     public class Alert
     {
