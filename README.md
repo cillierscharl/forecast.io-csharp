@@ -47,3 +47,8 @@ Please note:
  - You will require your own forecast.io [API Key](https://developer.forecast.io/)
  - Not all regions return forecasts by all periods (Daily, Minutely etc.)
  - Not all regions return all flags.
+ 
+
+###Contributors###
+ - f0xy
+ - Ryan-Anderson
