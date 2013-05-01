@@ -40,6 +40,8 @@ namespace ForecastIO
         [DataMember]
         public float precipIntensity { get; set; }
         [DataMember]
+        public float precipProbability { get; set; }
+        [DataMember]
         public float temperature { get; set; }
         [DataMember]
         public float dewPoint64 { get; set; }
@@ -134,6 +136,8 @@ namespace ForecastIO
         [DataMember]
         public float precipIntensityMax { get; set; }
         [DataMember]
+        public float precipProbability { get; set; }
+        [DataMember]
         public float temperatureMin { get; set; }
         [DataMember]
         public Int64 temperatureMinTime { get; set; }
@@ -142,7 +146,7 @@ namespace ForecastIO
         [DataMember]
         public Int64 temperatureMaxTime { get; set; }
         [DataMember]
-        public float dewPoInt64 { get; set; }
+        public float dewPoint64 { get; set; }
         [DataMember]
         public float windSpeed { get; set; }
         [DataMember]
