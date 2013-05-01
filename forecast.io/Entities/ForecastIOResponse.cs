@@ -42,7 +42,7 @@ namespace ForecastIO
         [DataMember]
         public float temperature { get; set; }
         [DataMember]
-        public float dewPoInt64 { get; set; }
+        public float dewPoint64 { get; set; }
         [DataMember]
         public float windSpeed { get; set; }
         [DataMember]
@@ -90,7 +90,7 @@ namespace ForecastIO
         [DataMember]
         public float temperature { get; set; }
         [DataMember]
-        public float dewPoInt64 { get; set; }
+        public float dewPoint64 { get; set; }
         [DataMember]
         public float windSpeed { get; set; }
         [DataMember]
