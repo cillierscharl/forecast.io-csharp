@@ -23,7 +23,7 @@ namespace ForecastIO
                 String.Format(periodForecastURL, apiKey, latitude, longitude, time, unit, exclude);
 
             string result;
-            using (WebClient client = new WebClient())
+            using (CompressionEnabledWebClient client = new CompressionEnabledWebClient())
             {
                 result = RequestHelpers.FormatResponse(client.DownloadString(url));
             }
