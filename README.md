@@ -52,3 +52,4 @@ Please note:
 ###Contributors###
  - f0xy
  - Ryan-Anderson
+ - VibertJ
