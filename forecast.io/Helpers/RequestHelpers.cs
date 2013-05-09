@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ForecastIO
 {
@@ -13,23 +14,9 @@ namespace ForecastIO
             return _input;
         }
 
-        public static string FormatExcludeString(string[] _input)
+        public static string FormatExcludeString(Exclude[] _input)
         {
-            var output = "";
-            if (_input.Length > 0)
-            {
-                foreach (string excludeBlock in _input)
-                {
-                    output += excludeBlock + ",";
-                }
-                output = output.TrimEnd(',');
-            }
-            else
-            {
-                output = "";
-            }
-
-            return output;
+            return string.Join(",", _input.Select(i => Enum.GetName(typeof(Exclude), i)));
         }
 
         public static string FormatUTCString(DateTime _input)
