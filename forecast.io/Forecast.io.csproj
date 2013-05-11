@@ -50,6 +50,7 @@
     <Compile Include="Entities\Contants.cs" />
     <Compile Include="Entities\ForecastIORequest.cs" />
     <Compile Include="Entities\ForecastIOResponse.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Helpers\RequestHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

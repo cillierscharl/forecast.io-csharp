@@ -18,13 +18,5 @@ namespace ForecastIO
         {
             return string.Join(",", _input.Select(i => Enum.GetName(typeof(Exclude), i)));
         }
-
-        public static string FormatUTCString(DateTime _input)
-        {
-            var milliseconds = _input.ToUniversalTime().Subtract(
-                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
-
-            return Convert.ToInt64(milliseconds).ToString();
-        }
     }
 }

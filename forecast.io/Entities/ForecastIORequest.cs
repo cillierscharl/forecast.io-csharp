@@ -1,6 +1,6 @@
-﻿using System;
+﻿using ForecastIO.Extensions;
+using System;
 using System.Globalization;
-using System.Net;
 using System.Web.Script.Serialization;
 
 namespace ForecastIO
@@ -49,7 +49,7 @@ namespace ForecastIO
             apiKey = _apiKey;
             latitude = _lat.ToString(CultureInfo.InvariantCulture);
             longitude = _long.ToString(CultureInfo.InvariantCulture);
-            time = RequestHelpers.FormatUTCString(_time);
+            time = _time.ToUTCString();
             unit = Enum.GetName(typeof(Unit), _unit);
             exclude = RequestHelpers.FormatExcludeString(_exclude);
         }
