@@ -146,7 +146,7 @@ namespace ForecastIO
         [DataMember]
         public Int64 temperatureMaxTime { get; set; }
         [DataMember]
-        public float dewPoint64 { get; set; }
+        public float dewPoint { get; set; }
         [DataMember]
         public float windSpeed { get; set; }
         [DataMember]
