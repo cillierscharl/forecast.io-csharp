@@ -32,25 +32,25 @@ namespace ForecastIO
             var dataObject = serializer.Deserialize<ForecastIOReponse>(result);
 
             return dataObject;
-            
+
         }
 
-        public ForecastIORequest(string _apiKey, float _lat, float _long, string _unit, params string[] _exclude)
+        public ForecastIORequest(string _apiKey, float _lat, float _long, Unit _unit, params Exclude[] _exclude)
         {
             apiKey = _apiKey;
             latitude = _lat.ToString(CultureInfo.InvariantCulture);
             longitude = _long.ToString(CultureInfo.InvariantCulture);
-            unit = _unit;
+            unit = Enum.GetName(typeof(Unit), _unit);
             exclude = RequestHelpers.FormatExcludeString(_exclude);
         }
 
-        public ForecastIORequest(string _apiKey, float _lat, float _long, DateTime _time, string _unit, params string[] _exclude)
+        public ForecastIORequest(string _apiKey, float _lat, float _long, DateTime _time, Unit _unit, params Exclude[] _exclude)
         {
             apiKey = _apiKey;
             latitude = _lat.ToString(CultureInfo.InvariantCulture);
             longitude = _long.ToString(CultureInfo.InvariantCulture);
             time = RequestHelpers.FormatUTCString(_time);
-            unit = _unit;
+            unit = Enum.GetName(typeof(Unit), _unit);
             exclude = RequestHelpers.FormatExcludeString(_exclude);
         }
     }
