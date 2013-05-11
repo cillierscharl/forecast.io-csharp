@@ -29,7 +29,7 @@ Returns the complete object :
     var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si);
     var response = request.Get();
 
-####Using date/time extensions####
+#####Using date/time extensions#####
     using ForecastIO;
     using ForecastIO.Extensions;
     
@@ -38,8 +38,10 @@ Returns the complete object :
 
     // Date/Time is represented by a Unix Timestamp
     var currentTime = response.currently.time;
-    // Return a .NET DateTime object using an extension (Notice the additional 'using' statement)
+    
+    // Return a .NET DateTime object (UTC) using an extension (Notice the additional 'using' statement)
     var _currentTime = currentTime.ToDateTime();
+    
     // Return a local .NET DateTime object
     var _localCurrentTime = currentTime.ToDateTime().ToLocalTime();
 
