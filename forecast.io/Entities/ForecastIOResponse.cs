@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace ForecastIO
 {
     [DataContract]
-    public class ForecastIOReponse
+    public class ForecastIOResponse
     {
         [DataMember]
         public float latitude { get; set; }
