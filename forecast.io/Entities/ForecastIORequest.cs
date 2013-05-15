@@ -17,7 +17,7 @@ namespace ForecastIO
         private static string currentForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2}?units={3}&exclude={4}";
         private static string periodForecastURL = "https://api.forecast.io/forecast/{0}/{1},{2},{3}?units={4}&exclude={5}";
 
-        public ForecastIOReponse Get()
+        public ForecastIOResponse Get()
         {
             var url = (time == null) ? String.Format(currentForecastURL, apiKey, latitude, longitude, unit, exclude) :
                 String.Format(periodForecastURL, apiKey, latitude, longitude, time, unit, exclude);
@@ -29,7 +29,7 @@ namespace ForecastIO
             }
 
             var serializer = new JavaScriptSerializer();
-            var dataObject = serializer.Deserialize<ForecastIOReponse>(result);
+            var dataObject = serializer.Deserialize<ForecastIOResponse>(result);
 
             return dataObject;
 
