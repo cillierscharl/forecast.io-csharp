@@ -45,7 +45,7 @@ Returns the complete object :
     // Return a local .NET DateTime object
     var _localCurrentTime = currentTime.ToDateTime().ToLocalTime();
 
-####Include extra data - (Currently only hourly is supported by the API) Returns hourly data for the next seven days, rather than the next two.####    
+####Include extra data - (Currently only hourly is supported by the API) Returns hourly data for the next seven days, rather than the next two.####
     using ForecastIO;
     
     var extendBlocks = new Extend[] 
