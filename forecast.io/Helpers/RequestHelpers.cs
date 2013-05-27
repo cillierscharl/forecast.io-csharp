@@ -18,5 +18,10 @@ namespace ForecastIO
         {
             return string.Join(",", _input.Select(i => Enum.GetName(typeof(Exclude), i)));
         }
+
+        public static string FormatExtendString(Extend[] _input)
+        {
+            return string.Join(",", _input.Select(i => Enum.GetName(typeof(Extend), i)));
+        }
     }
 }

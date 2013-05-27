@@ -45,6 +45,16 @@ Returns the complete object :
     // Return a local .NET DateTime object
     var _localCurrentTime = currentTime.ToDateTime().ToLocalTime();
 
+####Include extra data - (Currently only hourly is supported by the API) Returns hourly data for the next seven days, rather than the next two.####    
+    using ForecastIO;
+    
+    var extendBlocks = new Extend[] 
+    {
+        Extend.hourly
+    };
+
+    var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si, extendBlocks);
+    var response = request.Get();
     
 ####Exclude certain objects (returned as null)####
     using ForecastIO;
@@ -54,11 +64,10 @@ Returns the complete object :
         Exclude.alerts,
         Exclude.currently
     };
-    
-    var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si, excludeBlocks);
+
+    var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si, null, excludeBlocks);
     var response = request.Get();
-
-
+    
 Please note:
 
  - You will require your own forecast.io [API Key](https://developer.forecast.io/)
@@ -70,3 +79,4 @@ Please note:
  - f0xy
  - Ryan-Anderson
  - VibertJ
+ - jugglingnutcase

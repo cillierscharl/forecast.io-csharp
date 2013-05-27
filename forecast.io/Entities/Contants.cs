@@ -18,4 +18,10 @@
         alerts,
         flags
     }
+
+    // Keeping this an enum for now to since only hourly is supported (not sure if the devs will allow the other types to be extended).
+    public enum Extend
+    {
+        hourly
+    }
 }
