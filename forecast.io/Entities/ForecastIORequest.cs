@@ -15,7 +15,7 @@ namespace ForecastIO
         private readonly string _extend;
         private readonly string _time;
         //
-        private string _apiCallsRemaining;
+        private string _apiCallsMade;
         private string _apiResponseTime;
         //
 
@@ -33,7 +33,7 @@ namespace ForecastIO
                 result = RequestHelpers.FormatResponse(client.DownloadString(url));
                 // Set response values.
                 _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
-                _apiCallsRemaining = client.ResponseHeaders["X-Forecast-API-Calls"];
+                _apiCallsMade = client.ResponseHeaders["X-Forecast-API-Calls"];
             }
 
             var serializer = new JavaScriptSerializer();
@@ -68,9 +68,9 @@ namespace ForecastIO
         {
             get
             {
-                if (_apiCallsRemaining != null)
+                if (_apiCallsMade != null)
                 {
-                    return _apiCallsRemaining;
+                    return _apiCallsMade;
                 }
                 throw new Exception("Cannot retrieve API Calls Remaining. No calls have been made to the API yet.");
             }
