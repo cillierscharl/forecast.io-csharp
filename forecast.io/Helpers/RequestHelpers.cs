@@ -14,14 +14,14 @@ namespace ForecastIO
             return _input;
         }
 
-        public static string FormatExcludeString(Exclude[] _input)
+        public static string FormatExcludeString(Exclude[] input)
         {
-            return string.Join(",", _input.Select(i => Enum.GetName(typeof(Exclude), i)));
+            return string.Join(",", input.Select(i => Enum.GetName(typeof(Exclude), i)));
         }
 
-        public static string FormatExtendString(Extend[] _input)
+        public static string FormatExtendString(Extend[] input)
         {
-            return string.Join(",", _input.Select(i => Enum.GetName(typeof(Extend), i)));
+            return string.Join(",", input.Select(i => Enum.GetName(typeof(Extend), i)));
         }
     }
 }

@@ -7,9 +7,11 @@ namespace ForecastIO
     {
         protected override WebRequest GetWebRequest(Uri address)
         {
-            HttpWebRequest request = base.GetWebRequest(address) as HttpWebRequest;
+            var request = base.GetWebRequest(address) as HttpWebRequest;
+            if (request == null) return null;
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             return request;
         }
+        
     }
 }
