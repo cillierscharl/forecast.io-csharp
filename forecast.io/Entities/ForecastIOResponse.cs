@@ -186,6 +186,8 @@ namespace ForecastIO
         public Int64 expires { get; set; }
         [DataMember]
         public string uri { get; set; }
+        [DataMember]
+        public string description { get; set; }
     }
 
     [DataContract]
