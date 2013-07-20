@@ -14,6 +14,10 @@ namespace ForecastIO
         private readonly string _exclude;
         private readonly string _extend;
         private readonly string _time;
+        //
+        private string _apiCallsRemaining;
+        private string _apiResponseTime;
+        //
 
         private const string CurrentForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2}?units={3}&extend={4}&exclude={5}";
         private const string PeriodForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2},{3}?units={4}&extend={5}&exclude={6}";
@@ -27,6 +31,9 @@ namespace ForecastIO
             using (var client = new CompressionEnabledWebClient())
             {
                 result = RequestHelpers.FormatResponse(client.DownloadString(url));
+                // Set response values.
+                _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
+                _apiCallsRemaining = client.ResponseHeaders["X-Forecast-API-Calls"];
             }
 
             var serializer = new JavaScriptSerializer();
@@ -52,9 +59,33 @@ namespace ForecastIO
             _latitude = latF.ToString(CultureInfo.InvariantCulture);
             _longitude = longF.ToString(CultureInfo.InvariantCulture);
             _time = time.ToUTCString();
-            _unit = Enum.GetName(typeof(Unit), _unit);
+            _unit = Enum.GetName(typeof(Unit), unit);
             _extend = (extend != null) ? RequestHelpers.FormatExtendString(extend) : "";
             _exclude = (exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
+        }
+
+        public string ApiCallsRemaining
+        {
+            get
+            {
+                if (_apiCallsRemaining != null)
+                {
+                    return _apiCallsRemaining;
+                }
+                throw new Exception("Cannot retrieve API Calls Remaining. No calls have been made to the API yet.");
+            }
+        }
+
+        public string ApiResponseTime
+        {
+            get
+            {
+                if (_apiResponseTime != null)
+                {
+                    return _apiResponseTime;
+                }
+                throw new Exception("Cannot retrieve API Reponse Time. No calls have been made to the API yet.");
+            }
         }
     }
 }
