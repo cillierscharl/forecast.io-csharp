@@ -14,7 +14,7 @@ namespace ForecastIO
         [DataMember]
         public string timezone { get; set; }
         [DataMember]
-        public Int64 offset { get; set; }
+        public float offset { get; set; }
         [DataMember]
         public Currently currently { get; set; }
         [DataMember]
