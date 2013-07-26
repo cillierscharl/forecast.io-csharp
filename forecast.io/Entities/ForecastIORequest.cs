@@ -64,7 +64,7 @@ namespace ForecastIO
             _exclude = (exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
         }
 
-        public string ApiCallsRemaining
+        public string ApiCallsMade
         {
             get
             {
@@ -72,7 +72,7 @@ namespace ForecastIO
                 {
                     return _apiCallsMade;
                 }
-                throw new Exception("Cannot retrieve API Calls Remaining. No calls have been made to the API yet.");
+                throw new Exception("Cannot retrieve API Calls Made. No calls have been made to the API yet.");
             }
         }
 

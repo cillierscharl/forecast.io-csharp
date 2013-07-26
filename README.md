@@ -70,7 +70,7 @@ Returns the complete object :
     
 ####Request Metadata####
 
-Once a request has been made with `Get()` two properties namely `ApiResponseTime` and `ApiCallsRemaining` will be accesible on the request object.
+Once a request has been made with `Get()` two properties namely `ApiResponseTime` and 'ApiCallsMade' will be accesible on the request object.
 Please note that if a request has not yet been made an exception will be thrown.
     
 ####Please note:####
