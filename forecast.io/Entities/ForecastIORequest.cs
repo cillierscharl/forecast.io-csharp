@@ -49,8 +49,8 @@ namespace ForecastIO
             _latitude = latF.ToString(CultureInfo.InvariantCulture);
             _longitude = longF.ToString(CultureInfo.InvariantCulture);
             _unit = Enum.GetName(typeof(Unit), unit);
-            _extend = (_extend != null) ? RequestHelpers.FormatExtendString(extend) : "";
-            _exclude = (_exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
+            _extend = (extend != null) ? RequestHelpers.FormatExtendString(extend) : "";
+            _exclude = (exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
         }
 
         public ForecastIORequest(string apiKey, float latF, float longF, DateTime time, Unit unit, Extend[] extend = null, Exclude[] exclude = null)
