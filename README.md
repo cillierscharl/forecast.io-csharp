@@ -46,6 +46,9 @@ Returns the complete object :
     var _localCurrentTime = currentTime.ToDateTime().ToLocalTime();
 
 ####Include extra data - (Currently only hourly is supported by the API) Returns hourly data for the next seven days, rather than the next two.####
+
+#####Please note that you cannot specify a date (TimeMachine request) as the extend parameter will be ignored.#####
+
     using ForecastIO;
     
     var extendBlocks = new Extend[] 
@@ -53,7 +56,7 @@ Returns the complete object :
         Extend.hourly
     };
 
-    var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si, extendBlocks);
+    var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, Unit.si, extendBlocks);
     var response = request.Get();
     
 ####Exclude certain objects (returned as null)####
