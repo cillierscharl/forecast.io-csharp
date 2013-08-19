@@ -44,6 +44,8 @@ namespace ForecastIO
         [DataMember]
         public float temperature { get; set; }
         [DataMember]
+        public float apparentTemperature { get; set; }
+        [DataMember]
         public float dewPoint { get; set; }
         [DataMember]
         public float windSpeed { get; set; }
@@ -95,6 +97,8 @@ namespace ForecastIO
         public string precipType { get; set; }
         [DataMember]
         public float temperature { get; set; }
+        [DataMember]
+        public float apparentTemperature { get; set; }
         [DataMember]
         public float dewPoint { get; set; }
         [DataMember]
@@ -149,6 +153,14 @@ namespace ForecastIO
         public float temperatureMax { get; set; }
         [DataMember]
         public Int64 temperatureMaxTime { get; set; }
+        [DataMember]
+        public float apparentTemperatureMin { get; set; }
+        [DataMember]
+        public Int64 apparentTemperatureMinTime { get; set; }
+        [DataMember]
+        public float apparentTemperatureMax { get; set; }
+        [DataMember]
+        public Int64 apparentTemperatureMaxTime { get; set; }
         [DataMember]
         public float dewPoint { get; set; }
         [DataMember]
