@@ -30,6 +30,7 @@ namespace ForecastIO
             string result;
             using (var client = new CompressionEnabledWebClient())
             {
+                client.Encoding = Encoding.UTF8;
                 result = RequestHelpers.FormatResponse(client.DownloadString(url));
                 // Set response values.
                 _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
