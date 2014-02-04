@@ -177,6 +177,8 @@ namespace ForecastIO
         public float visibility { get; set; }
         [DataMember]
         public float ozone { get; set; }
+        [DataMember]
+        public float moonPhase { get; set; }
     }
     [DataContract]
     public class Daily
