@@ -89,3 +89,5 @@ Please note that if a request has not yet been made an exception will be thrown.
  - VibertJ
  - jugglingnutcase
  - squdgy
+ - warthurton
+ - DallasEpperson
