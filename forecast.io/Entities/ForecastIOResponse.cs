@@ -26,7 +26,7 @@ namespace ForecastIO
         [DataMember]
         public List<Alert> alerts { get; set; }
         [DataMember]
-        public Flags flags { get; set; }
+        public Flags flags { get; set; } 
     }
     [DataContract]
     public class Currently
@@ -37,6 +37,10 @@ namespace ForecastIO
         public string summary { get; set; }
         [DataMember]
         public string icon { get; set; }
+        [DataMember]
+        public float nearestStormDistance { get; set; }
+        [DataMember]
+        public float nearestStormBearing { get; set; }
         [DataMember]
         public float precipIntensity { get; set; }
         [DataMember]
@@ -140,6 +144,8 @@ namespace ForecastIO
         [DataMember]
         public Int64 sunsetTime { get; set; }
         [DataMember]
+        public float moonPhase { get; set; }
+        [DataMember]
         public float precipIntensity { get; set; }
         [DataMember]
         public float precipIntensityMax { get; set; }
@@ -177,8 +183,6 @@ namespace ForecastIO
         public float visibility { get; set; }
         [DataMember]
         public float ozone { get; set; }
-        [DataMember]
-        public float moonPhase { get; set; }
     }
     [DataContract]
     public class Daily
