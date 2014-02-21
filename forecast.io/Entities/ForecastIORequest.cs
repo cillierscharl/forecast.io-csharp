@@ -1,7 +1,8 @@
-﻿using System;
+﻿using ForecastIO.Extensions;
+using System;
 using System.Globalization;
+using System.Text;
 using System.Web.Script.Serialization;
-using ForecastIO.Extensions;
 
 namespace ForecastIO
 {
