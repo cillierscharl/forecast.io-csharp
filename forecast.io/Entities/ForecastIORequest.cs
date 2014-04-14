@@ -3,6 +3,11 @@ using System;
 using System.Globalization;
 using System.Text;
 using System.Web.Script.Serialization;
+#if WITH_ASYNC
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
+#endif
 
 namespace ForecastIO
 {
@@ -23,26 +28,44 @@ namespace ForecastIO
         private const string CurrentForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2}?units={3}&extend={4}&exclude={5}";
         private const string PeriodForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2},{3}?units={4}&extend={5}&exclude={6}";
 
+#if WITH_ASYNC
+        public async Task<ForecastIOResponse> GetAsync()
+        {
+            var url = (_time == null)
+                ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _extend, _exclude)
+                : String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _extend, _exclude);
+
+            using (var client = new CompressionEnabledWebClient { Encoding = Encoding.UTF8 })
+            {
+                var responseTask = client.DownloadStringTaskAsync(url);
+                return await responseTask.ContinueWith((t) => HandleResponse(client.ResponseHeaders, t.Result));
+            }
+        }
+#endif
+
         public ForecastIOResponse Get()
         {
-            var url = (_time == null) ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _extend, _exclude) :
-                String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _extend, _exclude);
+            var url = (_time == null)
+                ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _extend, _exclude)
+                : String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _extend, _exclude);
 
-            string result;
-            using (var client = new CompressionEnabledWebClient())
+            using (var client = new CompressionEnabledWebClient { Encoding = Encoding.UTF8})
             {
-                client.Encoding = Encoding.UTF8;
-                result = RequestHelpers.FormatResponse(client.DownloadString(url));
-                // Set response values.
-                _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
-                _apiCallsMade = client.ResponseHeaders["X-Forecast-API-Calls"];
+                string result = client.DownloadString(url);
+                return HandleResponse(client.ResponseHeaders, result);
             }
+        }
+
+        private ForecastIOResponse HandleResponse(WebHeaderCollection headers, string response)
+        {
+            string result = RequestHelpers.FormatResponse(response);
+
+            // Set response values.
+            _apiResponseTime = headers["X-Response-Time"];
+            _apiCallsMade = headers["X-Forecast-API-Calls"];
 
             var serializer = new JavaScriptSerializer();
-            var dataObject = serializer.Deserialize<ForecastIOResponse>(result);
-
-            return dataObject;
-
+            return serializer.Deserialize<ForecastIOResponse>(result);
         }
 
         public ForecastIORequest(string apiKey, float latF, float longF, Unit unit, Extend[] extend = null, Exclude[] exclude = null)
