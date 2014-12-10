@@ -6,7 +6,7 @@ using System.Web.Script.Serialization;
 
 namespace ForecastIO
 {
-    public class ForecastIORequest
+    public class ForecastIORequest : IForecastIORequest
     {
         private readonly string _apiKey;
         private readonly string _latitude;
@@ -43,6 +43,10 @@ namespace ForecastIO
 
             return dataObject;
 
+        }
+
+        public ForecastIORequest()
+        {
         }
 
         public ForecastIORequest(string apiKey, float latF, float longF, Unit unit, Extend[] extend = null, Exclude[] exclude = null)
