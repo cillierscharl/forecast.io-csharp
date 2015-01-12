@@ -146,11 +146,17 @@ namespace ForecastIO
         [DataMember]
         public float moonPhase { get; set; }
         [DataMember]
+        public float precipAccumulation { get; set; }
+        [DataMember]
         public float precipIntensity { get; set; }
         [DataMember]
         public float precipIntensityMax { get; set; }
         [DataMember]
+        public Int64 precipIntensityMaxTime { get; set; }
+        [DataMember]
         public float precipProbability { get; set; }
+        [DataMember]
+        public string precipType { get; set; }
         [DataMember]
         public float temperatureMin { get; set; }
         [DataMember]
