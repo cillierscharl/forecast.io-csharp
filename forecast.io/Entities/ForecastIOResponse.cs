@@ -46,6 +46,8 @@ namespace ForecastIO
         [DataMember]
         public float precipProbability { get; set; }
         [DataMember]
+        public float precipType { get; set; }
+        [DataMember]
         public float temperature { get; set; }
         [DataMember]
         public float apparentTemperature { get; set; }
