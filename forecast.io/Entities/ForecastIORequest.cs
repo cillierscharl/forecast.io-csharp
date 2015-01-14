@@ -15,18 +15,19 @@ namespace ForecastIO
         private readonly string _exclude;
         private readonly string _extend;
         private readonly string _time;
+        private readonly Language _lang;
         //
         private string _apiCallsMade;
         private string _apiResponseTime;
         //
 
-        private const string CurrentForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2}?units={3}&extend={4}&exclude={5}";
-        private const string PeriodForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2},{3}?units={4}&extend={5}&exclude={6}";
+        private const string CurrentForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2}?units={3}&lang={4}&extend={5}&exclude={6}";
+        private const string PeriodForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2},{3}?units={4}&lang={5}&extend={6}&exclude={7}";
 
         public ForecastIOResponse Get()
         {
-            var url = (_time == null) ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _extend, _exclude) :
-                String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _extend, _exclude);
+            var url = (_time == null) ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _lang, _extend, _exclude) :
+                String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _lang, _extend, _exclude);
 
             string result;
             using (var client = new CompressionEnabledWebClient())
@@ -45,7 +46,7 @@ namespace ForecastIO
 
         }
 
-        public ForecastIORequest(string apiKey, float latF, float longF, Unit unit, Extend[] extend = null, Exclude[] exclude = null)
+        public ForecastIORequest(string apiKey, float latF, float longF, Unit unit, Language? lang = null, Extend[] extend = null, Exclude[] exclude = null )
         {
             _apiKey = apiKey;
             _latitude = latF.ToString(CultureInfo.InvariantCulture);
@@ -53,9 +54,10 @@ namespace ForecastIO
             _unit = Enum.GetName(typeof(Unit), unit);
             _extend = (extend != null) ? RequestHelpers.FormatExtendString(extend) : "";
             _exclude = (exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
+            _lang = lang ?? Language.en;
         }
 
-        public ForecastIORequest(string apiKey, float latF, float longF, DateTime time, Unit unit, Extend[] extend = null, Exclude[] exclude = null)
+        public ForecastIORequest(string apiKey, float latF, float longF, DateTime time, Unit unit, Language? lang = null, Extend[] extend = null, Exclude[] exclude = null)
         {
             _apiKey = apiKey;
             _latitude = latF.ToString(CultureInfo.InvariantCulture);
@@ -64,6 +66,7 @@ namespace ForecastIO
             _unit = Enum.GetName(typeof(Unit), unit);
             _extend = (extend != null) ? RequestHelpers.FormatExtendString(extend) : "";
             _exclude = (exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
+            _lang = lang ?? Language.en;
         }
 
         public string ApiCallsMade

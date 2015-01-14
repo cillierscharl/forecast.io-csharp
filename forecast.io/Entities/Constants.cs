@@ -24,4 +24,20 @@
     {
         hourly
     }
+
+    public enum Language
+    {
+        bs,
+        de,
+        en,
+        es,
+        fr,
+        it,
+        nl,
+        pl,
+        pt,
+        ru,
+        tet
+    }
+
 }
