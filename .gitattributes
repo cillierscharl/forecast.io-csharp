@@ -1,22 +1,49 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+*.doc  diff=astextplain
+*.DOC	diff=astextplain
+*.docx	diff=astextplain
+*.DOCX	diff=astextplain
+*.dot	diff=astextplain
+*.DOT	diff=astextplain
+*.pdf	diff=astextplain
+*.PDF	diff=astextplain
+*.rtf	diff=astextplain
+*.RTF	diff=astextplain
 
-# Custom for Visual Studio
-*.cs     diff=csharp
-*.sln    merge=union
-*.csproj merge=union
-*.vbproj merge=union
-*.fsproj merge=union
-*.dbproj merge=union
+*.jpg  	binary
+*.png 	binary
+*.gif 	binary
 
-# Standard to msysgit
-*.doc	 diff=astextplain
-*.DOC	 diff=astextplain
-*.docx diff=astextplain
-*.DOCX diff=astextplain
-*.dot  diff=astextplain
-*.DOT  diff=astextplain
-*.pdf  diff=astextplain
-*.PDF	 diff=astextplain
-*.rtf	 diff=astextplain
-*.RTF	 diff=astextplain
+*.cs -text diff=csharp 
+*.vb -text
+*.c -text
+*.cpp -text
+*.cxx -text
+*.h -text
+*.hxx -text
+*.py -text
+*.rb -text
+*.java -text
+*.html -text
+*.htm -text
+*.css -text
+*.scss -text
+*.sass -text
+*.less -text
+*.js -text
+*.lisp -text
+*.clj -text
+*.sql -text
+*.php -text
+*.lua -text
+*.m -text
+*.asm -text
+*.erl -text
+*.fs -text
+*.fsx -text
+*.hs -text
+
+*.csproj -text merge=union 
+*.vbproj -text merge=union 
+*.fsproj -text merge=union 
+*.dbproj -text merge=union 
+*.sln -text merge=union 

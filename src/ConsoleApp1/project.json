@@ -1,0 +1,35 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "ConsoleApp1 Console Application",
+  "authors": [ "fish_" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "Forecast.io": "1.0.0-*",
+    "Forecast.io.tests": "1.0.0-*"
+  },
+
+  "commands": {
+    "ConsoleApp1": "ConsoleApp1"
+  },
+
+  "frameworks": {
+    "dnxcore50": {
+      "dependencies": {
+        "Newtonsoft.Json": "8.0.2",
+        "System.Runtime": "4.0.21-rc2-23623",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Threading": "4.0.11-beta-23516",
+        "System.Console": "4.0.0-beta-23516"
+      }
+    }
+  }
+}

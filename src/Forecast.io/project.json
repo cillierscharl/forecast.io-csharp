@@ -1,0 +1,53 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "C# Wrapper Library For Forecast.io",
+  "authors": [
+    "f0xy",
+    "Ryan-Anderson",
+    "VibertJ",
+    "jugglingnutcase",
+    "squdgy",
+    "warthurton",
+    "DallasEpperson",
+    "ebyte23"
+  ],
+  "tags": [ "" ],
+  "projectUrl": "https://github.com/f0xy/forecast.io-csharp",
+  "licenseUrl": "https://github.com/f0xy/forecast.io-csharp/blob/master/LICENSE.md",
+  "dependencies": {
+    "Newtonsoft.Json": "8.0.1"
+  },
+  "frameworks": {
+    "net40": { },
+    "net451": {
+      "dependencies": {
+        "System.Runtime": "4.0.21-rc2-23623"
+      }
+    },
+    "net461": {
+      "dependencies": {
+        "System.Runtime": "4.0.21-rc2-23623"
+      }
+    },
+    "dnx451": {
+      "dependencies": {
+        "System.Runtime": "4.0.21-rc2-23623"
+      }
+    },
+    "dnx461": {
+      "dependencies": {
+        "System.Runtime": "4.0.21-rc2-23623"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Runtime": "4.0.21-rc2-23623",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Threading": "4.0.11-beta-23516",
+        "Microsoft.Net.Http.Client": "1.0.0-beta8-15501"
+      }
+    }
+  }
+}
