@@ -38,6 +38,7 @@ local.properties
 
 # User-specific files
 *.suo
+*.nupkg
 *.user
 *.sln.docstates
 
@@ -62,6 +63,16 @@ local.properties
 *.vspscc
 .builds
 *.dotCover
+build
+bin
+obj
+src/TestResults
+packages
+artifacts
+TestResult.xml
+UnitTests*
+.vs*
+*.lock.json
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/

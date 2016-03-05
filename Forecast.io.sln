@@ -1,7 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forecast.io", "forecast.io\Forecast.io.csproj", "{505F13DA-0FF3-4B14-8A30-86D8EB95F0AC}"
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2628939B-776C-4D3B-9A0A-45840095DD6F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84D7FCC6-2DBC-4FD9-AB26-22EB1A19141D}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Forecast.io", "src\Forecast.io\Forecast.io.xproj", "{00A8E7BE-5DE6-493C-9DD1-FCD3405CB3F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +18,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{505F13DA-0FF3-4B14-8A30-86D8EB95F0AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{505F13DA-0FF3-4B14-8A30-86D8EB95F0AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{505F13DA-0FF3-4B14-8A30-86D8EB95F0AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{505F13DA-0FF3-4B14-8A30-86D8EB95F0AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00A8E7BE-5DE6-493C-9DD1-FCD3405CB3F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00A8E7BE-5DE6-493C-9DD1-FCD3405CB3F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00A8E7BE-5DE6-493C-9DD1-FCD3405CB3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00A8E7BE-5DE6-493C-9DD1-FCD3405CB3F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{00A8E7BE-5DE6-493C-9DD1-FCD3405CB3F0} = {2628939B-776C-4D3B-9A0A-45840095DD6F}
 	EndGlobalSection
 EndGlobal
