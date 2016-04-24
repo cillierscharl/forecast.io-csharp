@@ -1,4 +1,5 @@
-﻿namespace ForecastIO
+﻿using System.ComponentModel;
+namespace ForecastIO
 {
     public enum Unit
     {
@@ -27,17 +28,37 @@
 
     public enum Language
     {
-        bs,
-        de,
-        en,
+        ar,
+        be,
+        cs,
+        el,
         es,
         fr,
+        hr,
+        hu,
+        id,
         it,
+        @is,
+        kw,
+        nb,
         nl,
         pl,
         pt,
         ru,
-        tet
+        sk,
+        sr,
+        sv,
+        tet,
+        tr,
+        uk,
+        [Description("x-pig-latin")]
+        xpiglatin,
+        zh,
+        [Description("zh-tw")]
+        zhtw,
+        bs,
+        de,
+        en
     }
 
 }

@@ -15,7 +15,7 @@ namespace ForecastIO
         private readonly string _exclude;
         private readonly string _extend;
         private readonly string _time;
-        private readonly Language _lang;
+        private readonly string _lang;
         //
         private string _apiCallsMade;
         private string _apiResponseTime;
@@ -46,7 +46,7 @@ namespace ForecastIO
 
         }
 
-        public ForecastIORequest(string apiKey, float latF, float longF, Unit unit, Language? lang = null, Extend[] extend = null, Exclude[] exclude = null )
+        public ForecastIORequest(string apiKey, float latF, float longF, Unit unit, Language? lang = null, Extend[] extend = null, Exclude[] exclude = null)
         {
             _apiKey = apiKey;
             _latitude = latF.ToString(CultureInfo.InvariantCulture);
@@ -54,7 +54,7 @@ namespace ForecastIO
             _unit = Enum.GetName(typeof(Unit), unit);
             _extend = (extend != null) ? RequestHelpers.FormatExtendString(extend) : "";
             _exclude = (exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
-            _lang = lang ?? Language.en;
+            _lang = (lang != null) ? RequestHelpers.FormatLanguageEnum(lang) : Language.en.ToString();
         }
 
         public ForecastIORequest(string apiKey, float latF, float longF, DateTime time, Unit unit, Language? lang = null, Extend[] extend = null, Exclude[] exclude = null)
@@ -66,7 +66,7 @@ namespace ForecastIO
             _unit = Enum.GetName(typeof(Unit), unit);
             _extend = (extend != null) ? RequestHelpers.FormatExtendString(extend) : "";
             _exclude = (exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
-            _lang = lang ?? Language.en;
+            _lang = (lang != null) ? RequestHelpers.FormatLanguageEnum(lang) : Language.en.ToString();
         }
 
         public string ApiCallsMade

@@ -47,7 +47,7 @@
     <Compile Include="Entities\CompressedWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Entities\Contants.cs" />
+    <Compile Include="Entities\Constants.cs" />
     <Compile Include="Entities\ForecastIORequest.cs" />
     <Compile Include="Entities\ForecastIOResponse.cs" />
     <Compile Include="Extensions\Extensions.cs" />
