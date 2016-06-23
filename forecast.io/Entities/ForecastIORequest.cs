@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
 namespace ForecastIO
@@ -26,13 +27,11 @@ namespace ForecastIO
 
         public ForecastIOResponse Get()
         {
-            var url = (_time == null) ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _lang, _extend, _exclude) :
-                String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _lang, _extend, _exclude);
+            var url = GetUrl();
 
             string result;
-            using (var client = new CompressionEnabledWebClient())
+            using (var client = new CompressionEnabledWebClient { Encoding = Encoding.UTF8 })
             {
-                client.Encoding = Encoding.UTF8;
                 result = RequestHelpers.FormatResponse(client.DownloadString(url));
                 // Set response values.
                 _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
@@ -46,15 +45,37 @@ namespace ForecastIO
 
         }
 
+#if !NET_40
+        public async Task<ForecastIOResponse> GetAsync()
+        {
+            var url = GetUrl();
+
+            string result;
+            using (var client = new CompressionEnabledWebClient { Encoding = Encoding.UTF8 })
+            {
+                var response = await client.DownloadStringTaskAsync(url);
+                result = RequestHelpers.FormatResponse(response);
+                // Set response values.
+                _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
+                _apiCallsMade = client.ResponseHeaders["X-Forecast-API-Calls"];
+            }
+
+            var serializer = new JavaScriptSerializer();
+            var dataObject = serializer.Deserialize<ForecastIOResponse>(result);
+
+            return dataObject;
+        }
+#endif
+
         public ForecastIORequest(string apiKey, float latF, float longF, Unit unit, Language? lang = null, Extend[] extend = null, Exclude[] exclude = null)
         {
             _apiKey = apiKey;
             _latitude = latF.ToString(CultureInfo.InvariantCulture);
             _longitude = longF.ToString(CultureInfo.InvariantCulture);
             _unit = Enum.GetName(typeof(Unit), unit);
-            _extend = (extend != null) ? RequestHelpers.FormatExtendString(extend) : "";
-            _exclude = (exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
-            _lang = (lang != null) ? RequestHelpers.FormatLanguageEnum(lang) : Language.en.ToString();
+            _extend = extend != null ? RequestHelpers.FormatExtendString(extend) : string.Empty;
+            _exclude = exclude != null ? RequestHelpers.FormatExcludeString(exclude) : string.Empty;
+            _lang = lang != null ? RequestHelpers.FormatLanguageEnum(lang) : Language.en.ToString();
         }
 
         public ForecastIORequest(string apiKey, float latF, float longF, DateTime time, Unit unit, Language? lang = null, Extend[] extend = null, Exclude[] exclude = null)
@@ -64,9 +85,9 @@ namespace ForecastIO
             _longitude = longF.ToString(CultureInfo.InvariantCulture);
             _time = time.ToUTCString();
             _unit = Enum.GetName(typeof(Unit), unit);
-            _extend = (extend != null) ? RequestHelpers.FormatExtendString(extend) : "";
-            _exclude = (exclude != null) ? RequestHelpers.FormatExcludeString(exclude) : "";
-            _lang = (lang != null) ? RequestHelpers.FormatLanguageEnum(lang) : Language.en.ToString();
+            _extend = extend != null ? RequestHelpers.FormatExtendString(extend) : string.Empty;
+            _exclude = exclude != null ? RequestHelpers.FormatExcludeString(exclude) : string.Empty;
+            _lang = lang != null ? RequestHelpers.FormatLanguageEnum(lang) : Language.en.ToString();
         }
 
         public string ApiCallsMade
@@ -89,8 +110,17 @@ namespace ForecastIO
                 {
                     return _apiResponseTime;
                 }
-                throw new Exception("Cannot retrieve API Reponse Time. No calls have been made to the API yet.");
+                throw new Exception("Cannot retrieve API Response Time. No calls have been made to the API yet.");
             }
+        }
+
+        private string GetUrl()
+        {
+            var url = _time == null 
+                ? string.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _lang, _extend, _exclude) 
+                : string.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _lang, _extend, _exclude);
+
+            return url;
         }
     }
 }
