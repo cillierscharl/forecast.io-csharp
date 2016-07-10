@@ -75,6 +75,8 @@ namespace ForecastIO
         public Int64 time { get; set; }
         [DataMember]
         public float precipIntensity { get; set; }
+        [DataMember]
+        public float precipProbability { get; set; }
     }
     [DataContract]
     public class Minutely
