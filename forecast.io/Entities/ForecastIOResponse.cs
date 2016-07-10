@@ -44,6 +44,8 @@ namespace ForecastIO
         [DataMember]
         public float precipIntensity { get; set; }
         [DataMember]
+        public float precipIntensityError { get; set; }
+        [DataMember]
         public float precipProbability { get; set; }
         [DataMember]
         public string precipType { get; set; }
@@ -76,7 +78,11 @@ namespace ForecastIO
         [DataMember]
         public float precipIntensity { get; set; }
         [DataMember]
+        public float precipIntensityError { get; set; }
+        [DataMember]
         public float precipProbability { get; set; }
+        [DataMember]
+        public string precipType { get; set; }
     }
     [DataContract]
     public class Minutely
@@ -99,6 +105,8 @@ namespace ForecastIO
         public string icon { get; set; }
         [DataMember]
         public float precipIntensity { get; set; }
+        [DataMember]
+        public float precipIntensityError { get; set; }
         [DataMember]
         public float precipProbability { get; set; }
         [DataMember]
@@ -153,6 +161,8 @@ namespace ForecastIO
         public float precipAccumulation { get; set; }
         [DataMember]
         public float precipIntensity { get; set; }
+        [DataMember]
+        public float precipIntensityError { get; set; }
         [DataMember]
         public float precipIntensityMax { get; set; }
         [DataMember]
