@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace ForecastIO
 {
-    [DataContract]
+    [DataContract, Serializable]
     public class ForecastIOResponse
     {
         [DataMember]
@@ -28,7 +28,7 @@ namespace ForecastIO
         [DataMember]
         public Flags flags { get; set; } 
     }
-    [DataContract]
+    [DataContract, Serializable]
     public class Currently
     {
         [DataMember]
@@ -70,7 +70,7 @@ namespace ForecastIO
         [DataMember]
         public float ozone { get; set; }
     }
-    [DataContract]
+    [DataContract, Serializable]
     public class MinuteForecast
     {
         [DataMember]
@@ -84,7 +84,7 @@ namespace ForecastIO
         [DataMember]
         public string precipType { get; set; }
     }
-    [DataContract]
+    [DataContract, Serializable]
     public class Minutely
     {
         [DataMember]
@@ -94,7 +94,7 @@ namespace ForecastIO
         [DataMember]
         public List<MinuteForecast> data { get; set; }
     }
-    [DataContract]
+    [DataContract, Serializable]
     public class HourForecast
     {
         [DataMember]
@@ -132,7 +132,7 @@ namespace ForecastIO
         [DataMember]
         public float ozone { get; set; }
     }
-    [DataContract]
+    [DataContract, Serializable]
     public class Hourly
     {
         [DataMember]
@@ -142,7 +142,7 @@ namespace ForecastIO
         [DataMember]
         public List<HourForecast> data { get; set; }
     }
-    [DataContract]
+    [DataContract, Serializable]
     public class DailyForecast
     {
         [DataMember]
@@ -204,7 +204,7 @@ namespace ForecastIO
         [DataMember]
         public float ozone { get; set; }
     }
-    [DataContract]
+    [DataContract, Serializable]
     public class Daily
     {
         [DataMember]
@@ -215,7 +215,7 @@ namespace ForecastIO
         public List<DailyForecast> data { get; set; }
     }
 
-    [DataContract]
+    [DataContract, Serializable]
     public class Alert
     {
         [DataMember]
@@ -228,7 +228,7 @@ namespace ForecastIO
         public string description { get; set; }
     }
 
-    [DataContract]
+    [DataContract, Serializable]
     public class Flags
     {
         [DataMember]
