@@ -1,6 +1,8 @@
 ﻿using ForecastIO.Extensions;
 using System;
 using System.Globalization;
+using System.IO;
+using System.Net;
 using System.Text;
 using System.Web.Script.Serialization;
 
@@ -26,24 +28,67 @@ namespace ForecastIO
 
         public ForecastIOResponse Get()
         {
-            var url = (_time == null) ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _lang, _extend, _exclude) :
-                String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _lang, _extend, _exclude);
-
-            string result;
-            using (var client = new CompressionEnabledWebClient())
+            try
             {
-                client.Encoding = Encoding.UTF8;
-                result = RequestHelpers.FormatResponse(client.DownloadString(url));
-                // Set response values.
-                _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
-                _apiCallsMade = client.ResponseHeaders["X-Forecast-API-Calls"];
+                var url = (_time == null)
+                            ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _lang, _extend, _exclude)
+                            : String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _lang, _extend, _exclude);
+
+                string result = null;
+                using (var client = new CompressionEnabledWebClient())
+                {
+                    client.Encoding = Encoding.UTF8;
+
+                    using (Stream s = client.OpenRead(url))
+                    using (StreamReader sr = new StreamReader(s))
+                    {
+                        result = RequestHelpers.FormatResponse(sr.ReadToEnd());
+                    }
+
+                    // Set response values.
+                    _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
+                    _apiCallsMade = client.ResponseHeaders["X-Forecast-API-Calls"];
+                }
+
+                var serializer = new JavaScriptSerializer();
+                var dataObject = serializer.Deserialize<ForecastIOResponse>(result);
+
+                return dataObject;
             }
+            catch (Exception ex)
+            {
+                StringBuilder sb = new StringBuilder(500);
+                sb.AppendLine("Error while requesting weather from source!");
 
-            var serializer = new JavaScriptSerializer();
-            var dataObject = serializer.Deserialize<ForecastIOResponse>(result);
+                WebException wex = ex as WebException;
+                if (wex != null)
+                {
+                    HttpWebResponse httpResponse = wex.Response as HttpWebResponse;
+                    if (httpResponse != null)
+                    {
+                        int statusCode = (int)httpResponse.StatusCode;
+                        string statusDesc = httpResponse.StatusDescription;
 
-            return dataObject;
+                        sb.AppendLine(string.Format("Http Status Code: {0}", statusCode));
+                        sb.AppendLine(string.Format("Http Status Desc: {0}", statusDesc));
 
+                        if (httpResponse.Headers != null)
+                        {
+                            sb.AppendLine("All response header values:");
+                            foreach (var key in httpResponse.Headers.AllKeys)
+                            {
+                                string value = httpResponse.Headers[key];
+                                sb.AppendLine(string.Format("{0}: {1}", key, value));
+                            }
+                        }
+                        else
+                        {
+                            sb.AppendLine("Unable to get response headers!");
+                        }
+                    }
+                }
+                throw new ForecastIOException(sb.ToString(), ex);
+            }
         }
 
         public ForecastIORequest(string apiKey, float latF, float longF, Unit unit, Language? lang = null, Extend[] extend = null, Exclude[] exclude = null)

@@ -49,6 +49,7 @@
     </Compile>
     <Compile Include="Entities\Constants.cs" />
     <Compile Include="Entities\ForecastIORequest.cs" />
+    <Compile Include="Entities\ForecastIOException.cs" />
     <Compile Include="Entities\ForecastIOResponse.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Helpers\RequestHelpers.cs" />
