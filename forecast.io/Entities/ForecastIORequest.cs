@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
 namespace ForecastIO
@@ -26,8 +27,7 @@ namespace ForecastIO
 
         public ForecastIOResponse Get()
         {
-            var url = (_time == null) ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _lang, _extend, _exclude) :
-                String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _lang, _extend, _exclude);
+            var url = GetUrl();
 
             string result;
             using (var client = new CompressionEnabledWebClient())
@@ -39,11 +39,41 @@ namespace ForecastIO
                 _apiCallsMade = client.ResponseHeaders["X-Forecast-API-Calls"];
             }
 
+            return DeserializeResponse(result);
+        }
+
+
+
+#if NET45
+        public async Task<ForecastIOResponse> GetAsync()
+        {
+            var url = GetUrl();
+
+            string result;
+            using (var client = new CompressionEnabledWebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+                result = RequestHelpers.FormatResponse(await client.DownloadStringTaskAsync(url));
+                // Set response values.
+                _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
+                _apiCallsMade = client.ResponseHeaders["X-Forecast-API-Calls"];
+            }
+
+            return DeserializeResponse(result);
+        }
+#endif
+        private string GetUrl()
+        {
+            return (_time == null) ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _lang, _extend, _exclude) :
+                            String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _lang, _extend, _exclude);
+        }
+
+        private ForecastIOResponse DeserializeResponse(string result)
+        {
             var serializer = new JavaScriptSerializer();
             var dataObject = serializer.Deserialize<ForecastIOResponse>(result);
 
             return dataObject;
-
         }
 
         public ForecastIORequest(string apiKey, float latF, float longF, Unit unit, Language? lang = null, Extend[] extend = null, Exclude[] exclude = null)
