@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/f0xy/forecast.io-csharp.svg?branch=master)](https://travis-ci.org/f0xy/forecast.io-csharp)
+[![NuGet](https://img.shields.io/nuget/v/Forecast.io.svg)](https://www.nuget.org/packages/Forecast.io/)
+
 forecast.io-csharp
 ==================
 
