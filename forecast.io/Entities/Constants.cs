@@ -29,9 +29,13 @@ namespace ForecastIO
     public enum Language
     {
         ar,
+        az,
         be,
+        bs,
         cs,
+        de,
         el,
+        en,
         es,
         fr,
         hr,
@@ -55,10 +59,6 @@ namespace ForecastIO
         xpiglatin,
         zh,
         [Description("zh-tw")]
-        zhtw,
-        bs,
-        de,
-        en
+        zhtw
     }
-
 }
