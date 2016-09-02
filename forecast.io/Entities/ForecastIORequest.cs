@@ -1,10 +1,10 @@
 ﻿using ForecastIO.Extensions;
+using Newtonsoft.Json;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Web.Script.Serialization;
 
 namespace ForecastIO
 {
@@ -22,7 +22,6 @@ namespace ForecastIO
         private string _apiCallsMade;
         private string _apiResponseTime;
         //
-
         private const string CurrentForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2}?units={3}&lang={4}&extend={5}&exclude={6}";
         private const string PeriodForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2},{3}?units={4}&lang={5}&extend={6}&exclude={7}";
 
@@ -30,30 +29,33 @@ namespace ForecastIO
         {
             try
             {
-                var url = (_time == null)
-                            ? String.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _lang, _extend, _exclude)
-                            : String.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _lang, _extend, _exclude);
+                var uri = (_time == null)
+                            ? string.Format(CurrentForecastUrl, _apiKey, _latitude, _longitude, _unit, _lang, _extend, _exclude)
+                            : string.Format(PeriodForecastUrl, _apiKey, _latitude, _longitude, _time, _unit, _lang, _extend, _exclude);
 
-                string result = null;
-                using (var client = new CompressionEnabledWebClient())
+
+                var request = (HttpWebRequest)WebRequest.Create(uri);
+                request.Method = "GET";
+                request.Headers.Add("Content-Encoding", "gzip");
+                request.AutomaticDecompression = DecompressionMethods.GZip;
+                request.ContentType = "application/json";
+
+                var response = (HttpWebResponse)request.GetResponse();
+                ForecastIOResponse result = null;
+
+                using (Stream responseStream = response.GetResponseStream())
                 {
-                    client.Encoding = Encoding.UTF8;
-
-                    using (Stream s = client.OpenRead(url))
-                    using (StreamReader sr = new StreamReader(s))
-                    {
-                        result = RequestHelpers.FormatResponse(sr.ReadToEnd());
-                    }
-
-                    // Set response values.
-                    _apiResponseTime = client.ResponseHeaders["X-Response-Time"];
-                    _apiCallsMade = client.ResponseHeaders["X-Forecast-API-Calls"];
+                    var reader = new StreamReader(responseStream);
+                    var jsonOut = reader.ReadToEnd();
+                    reader.Close();
+                    result = JsonConvert.DeserializeObject<ForecastIOResponse>(jsonOut);
                 }
 
-                var serializer = new JavaScriptSerializer();
-                var dataObject = serializer.Deserialize<ForecastIOResponse>(result);
+                // Set response values.
+                _apiResponseTime = response.Headers["X-Response-Time"];
+                _apiCallsMade = response.Headers["X-Forecast-API-Calls"];
 
-                return dataObject;
+                return result;
             }
             catch (Exception ex)
             {
