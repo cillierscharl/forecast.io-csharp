@@ -23,8 +23,8 @@ namespace ForecastIO
         private string _apiCallsMade;
         private string _apiResponseTime;
         //
-        private const string CurrentForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2}?units={3}&lang={4}&extend={5}&exclude={6}";
-        private const string PeriodForecastUrl = "https://api.forecast.io/forecast/{0}/{1},{2},{3}?units={4}&lang={5}&extend={6}&exclude={7}";
+        private const string CurrentForecastUrl = "https://api.darksky.net/forecast/{0}/{1},{2}?units={3}&lang={4}&extend={5}&exclude={6}";
+        private const string PeriodForecastUrl = "https://api.darksky.net/forecast/{0}/{1},{2},{3}?units={4}&lang={5}&extend={6}&exclude={7}";
 
         public ForecastIOResponse Get()
         {
