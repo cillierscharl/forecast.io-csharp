@@ -60,6 +60,7 @@ namespace ForecastIO
         public long time { get; set; }
         public string summary { get; set; }
         public string icon { get; set; }
+        public float precipAccumulation { get; set; }
         public float precipIntensity { get; set; }
         public float precipIntensityError { get; set; }
         public float precipProbability { get; set; }
