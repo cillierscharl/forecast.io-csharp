@@ -31,12 +31,14 @@ namespace ForecastIO
         public float apparentTemperature { get; set; }
         public float dewPoint { get; set; }
         public float windSpeed { get; set; }
+        public float windGust { get; set; }
         public float windBearing { get; set; }
         public float cloudCover { get; set; }
         public float humidity { get; set; }
         public float pressure { get; set; }
         public float visibility { get; set; }
         public float ozone { get; set; }
+        public int uvIndex { get; set; }
     }
 
     public class MinuteForecast
@@ -68,12 +70,14 @@ namespace ForecastIO
         public float apparentTemperature { get; set; }
         public float dewPoint { get; set; }
         public float windSpeed { get; set; }
+        public float windGust { get; set; }
         public float windBearing { get; set; }
         public float cloudCover { get; set; }
         public float humidity { get; set; }
         public float pressure { get; set; }
         public float visibility { get; set; }
         public float ozone { get; set; }
+        public int uvIndex { get; set; }
     }
 
     public class Hourly
@@ -98,22 +102,31 @@ namespace ForecastIO
         public long precipIntensityMaxTime { get; set; }
         public float precipProbability { get; set; }
         public string precipType { get; set; }
-        public float temperatureMin { get; set; }
-        public long temperatureMinTime { get; set; }
-        public float temperatureMax { get; set; }
-        public long temperatureMaxTime { get; set; }
-        public float apparentTemperatureMin { get; set; }
-        public long apparentTemperatureMinTime { get; set; }
-        public float apparentTemperatureMax { get; set; }
-        public long apparentTemperatureMaxTime { get; set; }
+        public float temperatureLow { get; set; }
+        public long temperatureLowTime { get; set; }
+        public float temperatureHigh { get; set; }
+        public long temperatureHighTime { get; set; }
+        public float apparentTemperatureLow { get; set; }
+        public long apparentTemperatureLowTime { get; set; }
+        public float apparentTemperatureHigh { get; set; }
+        public long apparentTemperatureHighTime { get; set; }
         public float dewPoint { get; set; }
         public float windSpeed { get; set; }
         public float windBearing { get; set; }
+        public float windGust { get; set; }
+        public long windGustTime { get; set; }
         public float cloudCover { get; set; }
         public float humidity { get; set; }
         public float pressure { get; set; }
         public float visibility { get; set; }
         public float ozone { get; set; }
+        public int uvIndex { get; set; }
+        public long uvIndexTime { get; set; }
+        public float temperatureMin { get; set; }
+        public float temperatureMinTime { get; set; }
+        public float temperatureMax { get; set; }
+        public float temperatureMaxTime { get; set; }
+
     }
 
     public class Daily
