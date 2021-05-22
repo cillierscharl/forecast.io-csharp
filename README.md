@@ -12,7 +12,7 @@ C# Wrapper Library For [Forecast.io](http://forecast.io/)
 
     Install-Package Forecast.io
 
-###Usage###
+### Usage ###
 
     using ForecastIO;
     // API key, Lat, Long, Unit
@@ -29,13 +29,13 @@ Returns the complete object :
   <img src="http://i.imgur.com/iVxt1VD.png" alt=""></img>
 </p>
 
-####Including the date####
+#### Including the date ####
     using ForecastIO;
 
     var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si);
     var response = request.Get();
 
-#####Using date/time extensions#####
+##### Using date/time extensions #####
     using ForecastIO;
     using ForecastIO.Extensions;
 
@@ -51,9 +51,9 @@ Returns the complete object :
     // Return a local .NET DateTime object
     var _localCurrentTime = currentTime.ToDateTime().ToLocalTime();
 
-####Include extra data - (Currently only hourly is supported by the API) Returns hourly data for the next seven days, rather than the next two.####
+#### Include extra data - (Currently only hourly is supported by the API) Returns hourly data for the next seven days, rather than the next two. ####
 
-#####Please note that you cannot specify a date (TimeMachine request) as the extend parameter will be ignored.#####
+##### Please note that you cannot specify a date (TimeMachine request) as the extend parameter will be ignored. #####
 
     using ForecastIO;
 
@@ -65,7 +65,7 @@ Returns the complete object :
     var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, Unit.si, extendBlocks);
     var response = request.Get();
 
-####Exclude certain objects (returned as null)####
+#### Exclude certain objects (returned as null) ####
     using ForecastIO;
 
     var excludeBlocks = new Exclude[]
@@ -77,12 +77,12 @@ Returns the complete object :
     var request = new ForecastIORequest("YOUR API KEY", 37.8267f, -122.423f, DateTime.Now, Unit.si, null, excludeBlocks);
     var response = request.Get();
 
-####Request Metadata####
+#### Request Metadata ####
 
 Once a request has been made with `Get()` two properties namely `ApiResponseTime` and `ApiCallsMade` will be accesible on the request object.
 Please note that if a request has not yet been made an exception will be thrown.
 
-####Please note:####
+#### Please note: ####
 
  - You will require your own forecast.io [API Key](https://developer.forecast.io/)
  - Not all regions return forecasts by all periods (Daily, Minutely etc.)
