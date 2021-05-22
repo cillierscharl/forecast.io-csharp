@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/f0xy/forecast.io-csharp.svg?branch=master)](https://travis-ci.org/f0xy/forecast.io-csharp)
+[![.NET](https://github.com/cillierscharl/forecast.io-csharp/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cillierscharl/forecast.io-csharp/actions/workflows/dotnet.yml)
 [![NuGet](https://img.shields.io/nuget/v/Forecast.io.svg)](https://www.nuget.org/packages/Forecast.io/)
 
 forecast.io-csharp

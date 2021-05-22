@@ -1,5 +1,0 @@
-language: csharp
-solution: Forecast.io.sln
-script:
-  - xbuild /p:Configuration=Release Forecast.io.sln
-  - xbuild /p:Configuration=Release Forecast.io.40.sln
