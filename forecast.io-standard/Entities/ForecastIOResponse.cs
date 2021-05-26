@@ -1,19 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace ForecastIO
 {
     public class ForecastIOResponse
     {
-        public float latitude { get; set; }
-        public float longitude { get; set; }
-        public string timezone { get; set; }
-        public float offset { get; set; }
-        public Currently currently { get; set; }
-        public Minutely minutely { get; set; }
-        public Hourly hourly { get; set; }
-        public Daily daily { get; set; }
-        public List<Alert> alerts { get; set; }
-        public Flags flags { get; set; }
+        [JsonProperty("latitude")]
+        public float Latitude { get; set; }
+        [JsonProperty("longitude")]
+        public float Longitude { get; set; }
+        [JsonProperty("timezone")]
+        public string Timezone { get; set; }
+        [JsonProperty("offset")]
+        public float Offset { get; set; }
+        [JsonProperty("currently")]
+        public Currently Currently { get; set; }
+        [JsonProperty("minutely")]
+        public Minutely Minutely { get; set; }
+        [JsonProperty("hourly")]
+        public Hourly Hourly { get; set; }
+        [JsonProperty("daily")]
+        public Daily Daily { get; set; }
+        [JsonProperty("alerts")]
+        public List<Alert> Alerts { get; set; }
+        [JsonProperty("flags")]
+        public Flags Flags { get; set; }
     }
 
     public class Currently
