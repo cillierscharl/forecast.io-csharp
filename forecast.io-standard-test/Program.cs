@@ -21,14 +21,14 @@ namespace Forecast.io.test
         {
             var request = new ForecastIORequest(key, 43.4499376f, -79.7880999f, Unit.si);
             var response = request.Get();
-            Console.WriteLine(string.Format("Sync Response: {0}", response.currently.apparentTemperature));
+            Console.WriteLine(string.Format("Sync Response: {0}", response.Currently.apparentTemperature));
         }
 
         public async void TestAsync()
         {
             var request = new ForecastIORequest(key, 43.4499376f, -79.7880999f, Unit.si);
             var response = await request.GetAsync();
-            Console.WriteLine(string.Format("Async Response: {0}", response.currently.apparentTemperature));
+            Console.WriteLine(string.Format("Async Response: {0}", response.Currently.apparentTemperature));
         }
     }
 }
