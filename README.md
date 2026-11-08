@@ -6,6 +6,21 @@ forecast.io-csharp
 
 C# Wrapper Library For [Forecast.io](http://forecast.io/)
 
+> [!WARNING]
+> **Archived. The Dark Sky API this library wraps was shut down on March 31, 2023, so it no longer works.**
+>
+> Forecast.io opened its API in 2013 and became Dark Sky in 2016, when this library moved to `api.darksky.net`. Apple bought Dark Sky in 2020 and switched the API off three years later. Neither `api.forecast.io` nor `api.darksky.net` exists any more.
+>
+> From 2013 to 2022 the library picked up fixes and features from 11 contributors and about 185,000 downloads on NuGet. Thanks to everyone who helped.
+>
+> For weather data today, try:
+>
+> - [Apple WeatherKit](https://developer.apple.com/weatherkit/), Dark Sky's official successor. It has a REST API and needs an Apple Developer Program membership.
+> - [Pirate Weather](https://pirateweather.net/), which serves a Dark Sky–compatible API.
+> - [Open-Meteo](https://open-meteo.com/), which is free for non-commercial use and needs no API key.
+>
+> The code and the docs below are left as they were, for posterity.
+
 ------------------
 
 ### Install ###
@@ -26,7 +41,7 @@ C# Wrapper Library For [Forecast.io](http://forecast.io/)
 Returns the complete object :
 
 <p align="center">
-  <img src="http://i.imgur.com/iVxt1VD.png" alt=""></img>
+  <img src="https://i.imgur.com/iVxt1VD.png" alt=""></img>
 </p>
 
 #### Including the date ####
